@@ -1,0 +1,21 @@
+/*Comments*/
+
+/* Multi-line comments
+are created like with a forward slash and asterisk - the asterisk on the inside. 
+The keyboard shortcut is Ctrl + / */
+
+/* One stylistic convention is to 
+** use asterisks at the start of each line
+** to make it more aligned/readable. */
+
+-- Single line comments can be created with a double dash
+
+
+
+
+ 
+
+
+
+
+
