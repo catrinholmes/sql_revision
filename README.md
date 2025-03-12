@@ -39,3 +39,60 @@ Order of Execution
 6: Distinct
 7: Order by
 8: Limit/offset
+
+Editing existing table:
+
+Inserting a new row
+
+INSERT INTO tablename (column1, column2, column3)
+VALUES (value1, 'value2', value3);
+
+Correcting existing row
+
+UPDATE tablename
+SET column1 = value1,
+    column2 = value2
+WHERE column1 = "exampleerror";
+
+Deleting a row
+DELETE FROM tablename
+WHERE condition;
+
+Create a blank table with columns
+
+CREATE TABLE table1 
+(column1 TEXT,
+column2 INT);
+
+Adding or removing a column:
+
+ALTER TABLE table1
+ADD column1 INT;
+
+You can specify if there is a default value:
+
+ALTER TABLE table1
+ADD column1 TEXT
+DEFAULT 'N/A';
+
+Removing a column
+
+ALTER TABLE table1
+DROP column1;
+
+Renaming a table
+
+ALTER TABLE table1
+RENAME TO table_1;
+
+Delete a table:
+
+DROP TABLE table1;
+
+Joining tables vertically
+
+UNION: removes duplicate rows and vertically joins all elements without an order of operation
+UNION ALL: joins all rows regardless of duplicates
+
+INTERSECT: returns rows from the first table that are present in the second table
+EXCEPT: returns rows from the first table that are not present in the second table
