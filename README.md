@@ -1,53 +1,57 @@
-Comments
-
-Shortcut: Ctrl + /
-Syntax: /* Comments */
-Other: -- also works for single line comments
-
-Where
-
-Equals (case-sensitive)                                    :               =                          where id = 20; // where id = "20";
-Does not equal                                             :               != or <>                   where id <> 20; // where id /= 20; 
-Equals non case-sensitive string                           :               LIKE                       where name LIKE "sarah thompson";
-In a list                                                  :               IN ("ITEM 1", "ITEM 2")    where name IN ("Sarah Thompson", "Kathy Smith"); // WHERE id IN (20, 51, 73);
-Includes specific bit of string                            :               %                          where name LIKE "%sarah%;
+<b>Data Types </b> <br/>
+INT: Numeric variable without decimals <br/>
+FLOAT: Numeric variable with decimals <br/>
+TEXT: String variable <br/>
+<br/>
+<b>Comments </b> <br/>
+Shortcut: Ctrl + / <br/>
+Syntax: /* Comments */ <br/>
+Other: -- also works for single line comments <br/>
+<br/>
+<b>Where</b><br/>
+Equals (case-sensitive)                                    :               =                          where id = 20; // where id = "20"; <br/>
+Does not equal                                             :               != or <>                   where id <> 20; // where id /= 20; <br/>
+Equals non case-sensitive string                           :               LIKE                       where name LIKE "sarah thompson"; <br/>
+In a list                                                  :               IN ("ITEM 1", "ITEM 2")    where name IN ("Sarah Thompson", "Kathy Smith"); // WHERE id IN (20, 51, 73); <br/>
+Includes specific bit of string                            :               %                          where name LIKE "%sarah%; <br/>
 Matches string with mystery character (only used with LIKE):               _                          where id like ("2_");
-
+<br/>
 To only return rows where a value is divisible by 2        :                                          where year % 2 = 0;
 
-Filtering
+<b>Filtering</b> <br/>
+Select distinct <br/>
+Order by .... asc/desc <br/>
+<br/>
+Limit the number of rows returned                          :               LIMIT                      LIMIT 3; <br/>
+Return rows after the nth row                              :               OFFSET                     LIMIT 3 OFFSET 1; <br/>
 
-Select distinct 
-Order by .... asc/desc
-
-Limit the number of rows returned                          :               LIMIT                      LIMIT 3;
-Return rows after the nth row                              :               OFFSET                     LIMIT 3 OFFSET 1;
-
-Aggregation:
+<b>Aggregation:</b> <br/>
 SUM, AVG, MIN, MAX,
 
 WHERE filters rows before the GROUP BY statement
 HAVING filters rows after the GROUP BY statement
 
-Order of Execution
+<b>Order of Execution</b>
 
-1: From and join
-2: Where
-3: Group by
-4: Having
-5: Select
-6: Distinct
-7: Order by
-8: Limit/offset
+1: From and join <br/>
+2: Where <br/>
+3: Group by <br/>
+4: Having <br/>
+5: Select <br/>
+6: Distinct <br/>
+7: Order by <br/>
+8: Limit/offset <br/>
 
-Editing existing table:
+If there is a UNION/INTERSECT/EXCLUDE this happens before ORDER BY
 
-Inserting a new row
+<b>Editing existing table:</b>
 
-INSERT INTO tablename (column1, column2, column3)
-VALUES (value1, 'value2', value3);
+<b>Inserting a new row</b>
 
-Correcting existing row
+INSERT INTO tablename (column1, column2, column3)</br>
+VALUES (value1, 'value2', value3);</br>
+
+<b>Correcting existing row</b>
 
 UPDATE tablename
 SET column1 = value1,
@@ -58,13 +62,13 @@ Deleting a row
 DELETE FROM tablename
 WHERE condition;
 
-Create a blank table with columns
+<b>Create a blank table with columns</b>
 
 CREATE TABLE table1 
 (column1 TEXT,
 column2 INT);
 
-Adding or removing a column:
+<b>Adding or removing a column:</b>
 
 ALTER TABLE table1
 ADD column1 INT;
@@ -75,21 +79,21 @@ ALTER TABLE table1
 ADD column1 TEXT
 DEFAULT 'N/A';
 
-Removing a column
+<b>Removing a column</b>
 
 ALTER TABLE table1
 DROP column1;
 
-Renaming a table
+<b>Renaming a table</b>
 
 ALTER TABLE table1
 RENAME TO table_1;
 
-Delete a table:
+<b>Delete a table:</b>
 
 DROP TABLE table1;
 
-Joining tables vertically
+<b>Joining tables vertically</b>
 
 UNION: removes duplicate rows and vertically joins all elements without an order of operation
 UNION ALL: joins all rows regardless of duplicates
