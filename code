@@ -1,18 +1,37 @@
-/*Comments*/
+/* Creating a table */
 
-/* Multi-line comments
-are created like with a forward slash and asterisk - the asterisk on the inside. 
-The keyboard shortcut is Ctrl + / */
+CREATE TABLE table1 (id INT, name TEXT, spend FLOAT);
 
-/* One stylistic convention is to 
-** use asterisks at the start of each line
-** to make it more aligned/readable. */
+/* Inserting rows into a table */
 
--- Single line comments can be created with a double dash
+INSERT INTO table1 (id, name, spend)
+VALUES (32424, 'Donald Draper', 908),
+       (56239, 'Peggy Sue', 327);
 
----------------------------------------------------------------------------------
+/*  Total */
 
-CREATE TABLE table1 (id INT, 
+CREATE TABLE totals AS
+SELECT name, SUM(spend) AS total_spend
+FROM table1
+GROUP BY 1;
+
+/* Deleting a row */
+
+DELETE FROM totals
+WHERE name = 'Donald Draper';
+
+/* Altering a row*/
+
+ALTER TABLE totals
+RENAME total_spend TO spend;
+
+
+
+
+
+
+
+
 
 
 
