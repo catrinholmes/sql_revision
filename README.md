@@ -26,7 +26,7 @@ Limit the number of rows returned                          :               LIMIT
 Return rows after the nth row                              :               OFFSET                     LIMIT 3 OFFSET 1; <br/>
 
 <b>Aggregation:</b> <br/>
-SUM, AVG, MIN, MAX,
+SUM, AVG, MIN, MAX, COUNT
 
 WHERE filters rows before the GROUP BY statement
 HAVING filters rows after the GROUP BY statement
