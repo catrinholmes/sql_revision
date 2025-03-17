@@ -25,10 +25,73 @@ WHERE name = 'Donald Draper';
 ALTER TABLE totals
 RENAME total_spend TO spend;
 
+/* Partition By */
+select user_id, spend, transaction_date
+FROM
+
+(SELECT *,
+  ROW_NUMBER() 
+  OVER(PARTITION BY user_id ORDER BY transaction_date ASC) as column1
+FROM transactions) as table1
+where column1 = 3;
+
+/*Finding the rolling average*/
+SELECT 
+user_id,
+tweet_date,
+ROUND(AVG(tweet_count) 
+OVER(PARTITION BY user_id
+ORDER BY tweet_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW),2)
+FROM tweets
+order by 1;
 
 
+SELECT * FROM product_spend
+WHERE EXTRACT(YEAR from transaction_date) = 2022;
 
 
+/*Finding top 2
+SELECT category, product, total_spend FROM
+(SELECT category,
+product,
+sum(spend) as total_spend,
+RANK() OVER(
+PARTITION BY category order by sum(spend) desc) as ranking
+FROM product_spend
+WHERE EXTRACT(YEAR from transaction_date) = 2022
+GROUP BY 1,2
+order by 1,2) as table1
+where ranking <=2
+order by 1,total_spend desc;
+
+
+/* DENSE_RANK() doesn't skip any ranking numbers when it encounters duplicates */
+select a.name, b.department_name, a.salary
+FROM
+(
+SELECT department_id, 
+name,
+salary,
+DENSE_RANK() OVER(
+PARTITION BY department_id ORDER BY salary DESC) as ranking
+
+ FROM employee
+) as a 
+left join 
+department as b 
+on a.department_id = b.department_id
+WHERE a.ranking <=3
+order by department_name, salary desc, name;
+
+/*When dividing integer by integer, you may have to make one of them have decimals in order to not have the answer be 0*/
+
+select
+ROUND(sum(confirmations)::DECIMAL/count(distinct email_id),2) as calc 
+FROM
+(select a.email_id,
+case when b.signup_action = 'Confirmed' then 1 else 0 end as confirmations
+from emails as a left join texts as b
+on a.email_id = b.email_id) as table1;
 
 
 
