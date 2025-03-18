@@ -93,7 +93,59 @@ case when b.signup_action = 'Confirmed' then 1 else 0 end as confirmations
 from emails as a left join texts as b
 on a.email_id = b.email_id) as table1;
 
+/*If you can't create a temporary table, you can use WITH*/
 
+WITH customers AS
+
+(SELECT a.customer_id,
+count(distinct b.product_category) as category_count
+from customer_contracts as a 
+INNER JOIN products as b 
+
+ON a.product_id = b.product_id
+
+group by 1)
+
+SELECT customer_id
+from customers
+where category_count =
+(select count(distinct product_category) from products);
+
+/*Using filter instead of case when:*/
+
+select day,
+sum(measurement_value) FILTER (where row_number % 2 <> 0) as odd,
+sum(measurement_value) FILTER (where row_number % 2 = 0) as even
+from
+(SELECT *,
+CAST(measurement_time as date) as day,
+ROW_NUMBER() OVER
+(PARTITION BY extract(DAY from measurement_time) order by measurement_time asc)
+FROM measurements
+order by measurement_time asc) as table1
+group by 1
+order by 1;
+
+/*Calculating YOY*/
+
+
+
+SELECT 
+distinct
+EXTRACT(year from a.transaction_date) as year, 
+a.product_id,
+a.spend as curr_year_spend,
+b.spend as prev_year_spend,
+ROUND(((a.spend/b.spend)-1)*100,2) as yoy_rate
+
+FROM user_transactions as a 
+left join 
+user_transactions as b 
+on extract(year from b.transaction_date)+1 =
+extract(year from a.transaction_date) 
+and a.product_id = b.product_id
+
+order by product_id, year;
 
 
 
