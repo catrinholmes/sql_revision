@@ -28,8 +28,8 @@ Return rows after the nth row                              :               OFFSE
 <b>Aggregation:</b> <br/>
 SUM, AVG, MIN, MAX, COUNT
 
-WHERE filters rows before the GROUP BY statement
-HAVING filters rows after the GROUP BY statement
+WHERE cannot be used if there is a GROUP BY statement.
+In this situation HAVING is used instead.
 
 <b>Order of Execution</b>
 
