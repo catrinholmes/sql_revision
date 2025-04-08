@@ -8,6 +8,19 @@ INSERT INTO table1 (id, name, spend)
 VALUES (32424, 'Donald Draper', 908),
        (56239, 'Peggy Sue', 327);
 
+/* The order of the columns specified at the top does not have to reflect the actual order in the table.
+It just has to correspond with the values you are entering. */
+
+INSERT INTO table1 (spend, name)
+VALUES (501, 'Shane Little');
+-- The above code would populate a new row, where id would be NULL.
+
+/* Insert INTO also works without specifying the column names, if the names are in the correct order 
+and there are none missing. But it is not recommended as error more likely*/
+
+INSERT INTO table1
+VALUES ((32725, 'Katie Lane', 201),
+
 /*  Total */
 
 CREATE TABLE totals AS
