@@ -147,6 +147,31 @@ and a.product_id = b.product_id
 
 order by product_id, year;
 
+--Count of previous day using LAG function
+select admission_date,
+count(admission_date) as counts,
+lag(count(admission_date)) OVER (
+  ORDER BY admission_date) as count_yesterday
+  from admissions
+  group by 1;
+
+--Cross joins match all rows of one table with all rows in another table
+--If one table has 5 rows, and another has 10 rows, the cross join output will have 50 rows.
+
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+CROSS JOIN
+Orders;
+
+-- Cross joins will occur if no join is specified and the tables are simply listed e.g.
+
+SELECT 
+Customers.CustomerName, 
+Orders.OrderID
+FROM Customers,
+Orders;
+
+        
 
 
 
