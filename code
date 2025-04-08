@@ -33,10 +33,29 @@ GROUP BY 1;
 DELETE FROM totals
 WHERE name = 'Donald Draper';
 
-/* Altering a row*/
+/* Deleting all the data from a table */
+TRUNCATE TABLE totals;
+
+-- TRUNCATE is faster than DELETE, as DELETE has to run through each row one by one.
+
+/* Altering a column - Renaming*/
 
 ALTER TABLE totals
 RENAME total_spend TO spend;
+
+/*Altering a column - Data Type */
+
+ALTER TABLE classes
+ALTER COLUMN student_id VARCHAR;
+-- The above is changing an INT variable to VARCHAR
+
+/* Having is used with aggregate functions, where there is a GROUP BY statement */
+SELECT ticker,
+min(open) as MIN
+FROM stock_prices
+group by 1
+having min(open) > 100;
+
 
 /* Partition By */
 select user_id, spend, transaction_date
