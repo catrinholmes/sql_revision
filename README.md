@@ -3,6 +3,7 @@ INT: Numeric variable without decimals <br/>
 FLOAT: Numeric variable with decimals <br/>
 TEXT: String variable <br/>
 <br/>
+Tuples are rows <br/>
 <b>Comments </b> <br/>
 Shortcut: Ctrl + / <br/>
 Syntax: /* Comments */ <br/>
