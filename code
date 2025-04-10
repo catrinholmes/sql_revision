@@ -116,7 +116,7 @@ WHERE a.ranking <=3
 order by department_name, salary desc, name;
 
 /*When dividing integer by integer, you may have to make one of them have decimals in order to not have the answer be 0*/
-
+/* You can use CAST(variable AS FLOAT)*/
 select
 ROUND(sum(confirmations)::DECIMAL/count(distinct email_id),2) as calc 
 FROM
